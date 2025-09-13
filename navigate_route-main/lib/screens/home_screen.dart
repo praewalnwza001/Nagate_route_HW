@@ -14,9 +14,7 @@ class HomeScreen extends StatelessWidget {
     final message = context.watch<DataProvider>().message;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
-      ),
+      appBar: AppBar(title: const Text('Home Screen')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -29,7 +27,12 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // ไปยังหน้า DetailScreen
+                // 1. ส่งค่าไปยัง Provider
+                context.read<DataProvider>().updateMessage(
+                  'this is data from home page',
+                );
+
+                // 2. นำทางไปยังหน้า Detail Screen
                 Navigator.of(context).pushNamed(DetailScreen.routeName);
               },
               child: const Text('Go to Detail Screen'),
@@ -40,7 +43,9 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // ใช้ context.read เพื่ออัปเดตข้อมูลใน Provider
-          context.read<DataProvider>().updateMessage('this is data from home page');
+          context.read<DataProvider>().updateMessage(
+            'this is data from home page',
+          );
         },
         child: const Icon(Icons.send),
       ),

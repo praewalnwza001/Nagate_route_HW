@@ -13,9 +13,7 @@ class DetailScreen extends StatelessWidget {
     final message = context.watch<DataProvider>().message;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Detail Screen'),
-      ),
+      appBar: AppBar(title: const Text('Detail Screen')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -28,12 +26,15 @@ class DetailScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // ใช้ context.read เพื่ออัปเดตข้อมูลใน Provider
-                context.read<DataProvider>().updateMessage('this is data from detail page');
-                // กลับไปยังหน้าหลัก
+                // 1. ส่งค่าไปยัง Provider
+                context.read<DataProvider>().updateMessage(
+                  'this is data from detail page',
+                );
+
+                // 2. นำทางกลับไปยังหน้า Home Screen
                 Navigator.of(context).pop();
               },
-              child: const Text('Send data to Home Screen'),
+              child: const Text('Go Back'),
             ),
           ],
         ),
