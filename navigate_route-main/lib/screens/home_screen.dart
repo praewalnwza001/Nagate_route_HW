@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
           children: <Widget>[
             // แสดงข้อความที่ได้รับจาก Provider
             Text(
-              message.isEmpty ? 'No data received' : message,
+              message.isEmpty ? '' : message,
               style: const TextStyle(fontSize: 24),
             ),
             const SizedBox(height: 20),
